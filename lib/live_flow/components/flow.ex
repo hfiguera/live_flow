@@ -274,9 +274,10 @@ defmodule LiveFlow.Components.Flow do
   end
 
   @impl true
-  def handle_event("lf:connect_end", _params, socket) do
+  def handle_event("lf:connect_end", params, socket) do
     # Edge creation is handled by the parent LiveView.
     # This handler only clears the connecting state.
+    notify_callback(socket.assigns.on_connect, params)
     {:noreply, assign(socket, connecting: nil)}
   end
 
