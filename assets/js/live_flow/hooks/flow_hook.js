@@ -489,7 +489,12 @@ export const LiveFlowHook = {
 
     // Edge click
     const edgeEl = target.closest('[data-edge-id]');
-    if (edgeEl && (target.classList.contains('lf-edge-interaction') || target.classList.contains('lf-edge'))) {
+    if (
+      edgeEl &&
+        (target.classList.contains('lf-edge-interaction') ||
+          target.classList.contains('lf-edge') ||
+          target.closest('.lf-edge-label'))
+    ) {
       event.preventDefault();
       const multi = event.shiftKey || event.ctrlKey || event.metaKey;
       this.selection.selectEdge(edgeEl.dataset.edgeId, { multi, toggle: multi });
